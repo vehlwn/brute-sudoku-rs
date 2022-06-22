@@ -1,6 +1,9 @@
+use serde::{Deserialize, Serialize};
+
 const _EMPTY_CHAR: char = '.';
 pub const EMPTY_NUM: u32 = 0;
 
+#[derive(Serialize, Deserialize)]
 pub enum Format {
     Compact,
     Indent,
