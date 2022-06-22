@@ -3,17 +3,27 @@ version: "3.3"
 services:
   backend-rs:
     build:
-      context: backend-rs
+      context: ./backend-rs
     restart: always
     logging:
       options:
         max-size: "${DOCKER_LOGS_MAX_SIZE:-100M}"
   front:
     build:
-      context: front
+      context: ./front
     restart: always
     logging:
       options:
         max-size: "${DOCKER_LOGS_MAX_SIZE:-100M}"
+  proxy:
+    build:
+      context: ./nginx
+    restart: always
     ports:
-      - "5000:5000"
+      - 0.0.0.0:5000:5000
+    depends_on:
+      - backend-rs
+      - front
+    logging:
+      options:
+        max-size: "${DOCKER_LOGS_MAX_SIZE:-100M}"
