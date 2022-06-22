@@ -1,15 +1,19 @@
 FROM rust:1.53.0-alpine AS builder
-WORKDIR /root/backend-rs
-COPY Cargo.toml ./
-COPY stub-main.rs ./src/main.rs
+RUN adduser --home /home/app --disabled-password --uid 1001 app
+WORKDIR /home/app
+COPY --chown=app Cargo.toml ./
+COPY --chown=app stub-main.rs ./src/main.rs
 RUN apk add musl-dev
+USER app
 RUN cargo build --release
 RUN rm ./src/main.rs ./target/release/deps/brute_sudoku_rs*
-COPY src ./src
+COPY --chown=app src ./src
 RUN cargo build --release
 
 FROM alpine
-WORKDIR /root/backend-rs
-COPY --from=builder /root/backend-rs/target/release/brute-sudoku-rs ./
+RUN adduser --home /home/app --disabled-password --uid 1001 app
+WORKDIR /home/app
+USER app
+COPY --chown=app --from=builder /home/app/target/release/brute-sudoku-rs ./
 EXPOSE 5000
 ENTRYPOINT ./brute-sudoku-rs
