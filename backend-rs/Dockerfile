@@ -1,5 +1,5 @@
-FROM rust:1.53.0-alpine AS builder
-RUN adduser --home /home/app --disabled-password --uid 1001 app
+FROM rust:1.59.0-alpine AS builder
+RUN adduser --home /home/app --disabled-password app
 WORKDIR /home/app
 COPY --chown=app Cargo.toml ./
 COPY --chown=app stub-main.rs ./src/main.rs
@@ -11,7 +11,7 @@ COPY --chown=app src ./src
 RUN cargo build --release
 
 FROM alpine
-RUN adduser --home /home/app --disabled-password --uid 1001 app
+RUN adduser --home /home/app --disabled-password app
 WORKDIR /home/app
 USER app
 COPY --chown=app --from=builder /home/app/target/release/brute-sudoku-rs ./
