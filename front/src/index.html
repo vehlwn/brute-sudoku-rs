@@ -10,16 +10,27 @@
       <div class="row">
         <label class="col">Input table</label>
         <label class="col">Result</label>
+        <div id="exampleBtns" class="d-flex flex-row m-2">
+          <button id="example1Btn" class="btn btn-link btn-sm">
+            Example 1
+          </button>
+          <button id="example2Btn" class="btn btn-link btn-sm">
+            Example 2
+          </button>
+        </div>
       </div>
 
       <div class="row">
-        <textarea id="inputTable" class="col"></textarea>
-        <textarea id="result" class="col"></textarea>
+        <textarea id="inputTable" class="col font-monospace"></textarea>
+        <textarea id="result" class="col font-monospace" readonly></textarea>
       </div>
 
-      <br />
-      <button id="solveBtn" class="btn btn-primary">Solve</button>
-      <button id="clearBtn" class="btn btn-primary">Clear</button>
+      <div class="container d-flex align-items-start">
+        <div class="d-flex flex-row">
+          <button id="solveBtn" class="btn btn-primary m-1">Solve</button>
+          <button id="clearBtn" class="btn btn-primary m-1">Clear</button>
+        </div>
+      </div>
     </div>
   </body>
 </html>
