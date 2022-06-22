@@ -12,18 +12,10 @@ services:
     build:
       context: ./front
     restart: always
-    logging:
-      options:
-        max-size: "${DOCKER_LOGS_MAX_SIZE:-100M}"
-  proxy:
-    build:
-      context: ./nginx
-    restart: always
     ports:
       - 0.0.0.0:5000:5000
     depends_on:
       - backend-rs
-      - front
     logging:
       options:
         max-size: "${DOCKER_LOGS_MAX_SIZE:-100M}"
