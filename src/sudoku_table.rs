@@ -3,10 +3,16 @@ use serde::{Deserialize, Serialize};
 const _EMPTY_CHAR: char = '.';
 pub const EMPTY_NUM: u32 = 0;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug, Clone, Copy)]
 pub enum Format {
     Compact,
     Indent,
+}
+
+impl Default for Format {
+    fn default() -> Self {
+        return Format::Compact;
+    }
 }
 
 #[derive(Debug, Clone)]
@@ -80,6 +86,7 @@ impl SudokuTable {
                         ret.push_str("  ");
                     }
                 }
+                ret.truncate(ret.trim_end().len());
             }
         }
         return ret;

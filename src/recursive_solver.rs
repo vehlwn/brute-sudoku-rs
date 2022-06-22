@@ -53,7 +53,6 @@ impl RecursiveSolver {
         if !self.m_table.verify_all() {
             return Err(Box::new(NoSolutionError));
         }
-        println!("{:?}", self.m_rows_indexes);
         if self.solve_impl(self.m_rows_indexes[0] * 9) {
             return Ok(self.m_table.clone());
         } else {
