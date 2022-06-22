@@ -1,1 +1,9 @@
+.cache/
+.mypy_cache/
+.vim/
+/*.user
+compile_commands.json
+dist/
+node_modules/
+owncert/
 target/

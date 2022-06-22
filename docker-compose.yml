@@ -8,3 +8,12 @@ services:
     logging:
       options:
         max-size: "${DOCKER_LOGS_MAX_SIZE:-100M}"
+  front:
+    build:
+      context: front
+    restart: always
+    logging:
+      options:
+        max-size: "${DOCKER_LOGS_MAX_SIZE:-100M}"
+    ports:
+      - "5000:5000"

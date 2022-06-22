@@ -11,7 +11,7 @@ async fn main() -> std::io::Result<()> {
         env_logger::Env::default().default_filter_or("info"),
     )
     .init();
-    let addr = "127.0.0.1:5000";
+    let addr = "0.0.0.0:5000";
     actix_web::HttpServer::new(|| {
         actix_web::App::new()
             .wrap(actix_web::middleware::Logger::default())

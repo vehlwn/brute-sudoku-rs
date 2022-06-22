@@ -10,4 +10,5 @@ RUN rm ./src/main.rs
 RUN rm ./target/release/deps/brute_sudoku_rs*
 COPY src ./src
 RUN cargo build --release
+EXPOSE 5000
 ENTRYPOINT cargo run --release
