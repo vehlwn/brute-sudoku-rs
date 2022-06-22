@@ -1,7 +1,9 @@
-import "bootstrap";
-
+import "bootstrap/dist/css/bootstrap.min.css";
 import $ from "jquery";
 
+window.onload = (_event) => {
+  console.log("page is fully loaded");
+};
 $("#solveBtn").on("click", async function () {
   console.log("solve");
 });
@@ -17,6 +19,6 @@ async function postData(url = "", data = {}) {
   return response.json();
 }
 
-postData("https://example.com/answer", { answer: 42 }).then((data) => {
-  console.log(data); // JSON data parsed by `data.json()` call
-});
+// postData("https://example.com/answer", { answer: 42 }).then((data) => {
+//   console.log(data);
+// });

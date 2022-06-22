@@ -7,13 +7,18 @@
   </head>
   <body>
     <div class="container">
-      <label>Input table</label>
-      <textarea id="inputTable"></textarea>
+      <div class="row">
+        <label class="col">Input table</label>
+        <label class="col">Result</label>
+      </div>
 
-      <label>Result</label>
-      <textarea id="result"></textarea>
+      <div class="row">
+        <textarea id="inputTable" class="col"></textarea>
+        <textarea id="result" class="col"></textarea>
+      </div>
 
-      <button id="solveBtn">Solve</button>
+      <button id="solveBtn" class="btn btn-primary">Solve</button>
+      <button id="clearBtn" class="btn btn-primary">Clear</button>
     </div>
   </body>
 </html>
