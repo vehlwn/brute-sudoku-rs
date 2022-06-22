@@ -1,0 +1,11 @@
+version: "3.3"
+
+services:
+  backend-rs:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend-rs
+    restart: always
+    logging:
+      options:
+        max-size: "${DOCKER_LOGS_MAX_SIZE:-100M}"
