@@ -2,6 +2,7 @@
 .mypy_cache/
 .vim/
 /*.user
+Cargo.lock
 compile_commands.json
 dist/
 node_modules/
