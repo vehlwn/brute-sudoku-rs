@@ -35,15 +35,6 @@ pub struct RecursiveSolver {
 }
 
 impl RecursiveSolver {
-    pub fn solve_str(&mut self, s: &str) -> Result<SudokuTable> {
-        let mut t = SudokuTable::default();
-        if !t.try_parse(s) {
-            return Err(Box::new(ParseError));
-        }
-        self.set_table(t);
-        return self.solve();
-    }
-
     pub fn set_table(&mut self, t: SudokuTable) {
         self.m_table = t;
         self.m_rows_indexes = self.m_table.get_sorted_rows_indexes();
