@@ -18,4 +18,4 @@ $ curl -H "content-type: application/json" https://your_domain:5000/recursive_so
 
 ## Example
 
-[example1](example1.png)
+![example1](example1.png)
