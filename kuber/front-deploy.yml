@@ -1,0 +1,52 @@
+# vim: shiftwidth=2
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front
+  namespace: brute-sudoku-rs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: front
+  template:
+    metadata:
+      labels:
+        app: front
+    spec:
+      imagePullSecrets:
+        - name: your-cred
+      containers:
+        - name: front
+          image: "your_registry:5005/brute-sudoku-rs/front:latest"
+          imagePullPolicy: Always
+          ports:
+            - name: front-port
+              containerPort: 5000
+            - name: healthy-port
+              containerPort: 5001
+
+          startupProbe:
+            httpGet:
+              path: /healthy
+              port: healthy-port
+            failureThreshold: 30
+            periodSeconds: 10
+
+          livenessProbe:
+            httpGet:
+              path: /healthy
+              port: healthy-port
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+            periodSeconds: 30
+            failureThreshold: 3
+
+          readinessProbe:
+            httpGet:
+              path: /healthy
+              port: healthy-port
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+            periodSeconds: 30
+            failureThreshold: 3

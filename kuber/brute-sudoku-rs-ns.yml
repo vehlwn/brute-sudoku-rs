@@ -1,0 +1,5 @@
+# vim: shiftwidth=2
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: brute-sudoku-rs

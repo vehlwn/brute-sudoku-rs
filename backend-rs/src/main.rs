@@ -20,7 +20,7 @@ async fn main() -> std::io::Result<()> {
                 actix_web::web::post().to(recursive_solver_handler),
             )
             .route(
-                "/",
+                "/healthy",
                 actix_web::web::get().to(|| actix_web::HttpResponse::Ok()),
             )
     })

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: front
+  namespace: brute-sudoku-rs
+spec:
+  type: NodePort
+  # type: ClusterIP
+  selector:
+    app: front
+  ports:
+    - name: front-port
+      targetPort: front-port
+      port: 5000
+      nodePort: 30007
+      protocol: TCP

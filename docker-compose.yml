@@ -1,9 +1,11 @@
+# vim: shiftwidth=2
 version: "3.3"
 
 services:
   backend-rs:
     build:
       context: ./backend-rs
+    image: "your_registry:5005/brute-sudoku-rs/backend-rs:latest"
     restart: always
     logging:
       options:
@@ -11,9 +13,10 @@ services:
   front:
     build:
       context: ./front
+    image: "your_registry:5005/brute-sudoku-rs/front:latest"
     restart: always
     ports:
-      - 0.0.0.0:5000:5000
+      - "127.0.0.1:5001:5000"
     depends_on:
       - backend-rs
     logging:

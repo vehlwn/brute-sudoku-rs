@@ -1,0 +1,50 @@
+# vim: shiftwidth=2
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-rs
+  namespace: brute-sudoku-rs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: backend-rs
+  template:
+    metadata:
+      labels:
+        app: backend-rs
+    spec:
+      imagePullSecrets:
+        - name: your-cred
+      containers:
+        - name: backend-rs
+          image: "your_registry:5005/brute-sudoku-rs/backend-rs:latest"
+          imagePullPolicy: Always
+          ports:
+            - name: backend-rs-port
+              containerPort: 5000
+
+          startupProbe:
+            httpGet:
+              path: /healthy
+              port: backend-rs-port
+            failureThreshold: 30
+            periodSeconds: 10
+
+          livenessProbe:
+            httpGet:
+              path: /healthy
+              port: backend-rs-port
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+            periodSeconds: 30
+            failureThreshold: 3
+
+          readinessProbe:
+            httpGet:
+              path: /healthy
+              port: backend-rs-port
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+            periodSeconds: 30
+            failureThreshold: 3
